@@ -7,18 +7,27 @@ $content = file_get_contents('php://input');
 
 $events = json_decode($content, true);
 // Validate parsed JSON data
+if(isset($events['events'][0]['source']['userId'])){
+          $userId = $events['events'][0]['source']['userId'];
+}
+else if(isset($events['events'][0]['source']['groupId'])){
+          $userId = $events['events'][0]['source']['groupId'];
+}
+else if(isset($events['events'][0]['source']['room'])){
+          $userId = $events['events'][0]['source']['room'];
+}
+
 if (!is_null($events['ALARM'])) {
 	
-	send_LINE($events['ALARM']);
-		
+	send_LINE($events['ALARM'],$userID);
 	echo "OK";
 	}
 if (!is_null($events['events'])) {
 	echo "line bot";
 
 	$replyToken = $events['events'][0]['replyToken'];
-	$userId = $events['events'][0]['source']['userId'];
-        $temp = "User Id คือ " . $userId;
+	//$userId = $events['events'][0]['source']['userId'];
+        //$temp = "User Id คือ " . $userId;
 	if(isset($events['events'][0]['source']['userId'])){
           $userId = $events['events'][0]['source']['userId'];
           $temp = "User Id คือ " . $userId;
