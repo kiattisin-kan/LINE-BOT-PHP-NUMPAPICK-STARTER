@@ -12,7 +12,7 @@
 
 	$messages = [];
 	$messages['replyToken'] = $replyToken;
- $temp = $userId . "ทดสอบแจ้งเตือน";
+ $temp = "User Id คือ " . $userId;
 	$messages['messages'][0] = getFormatTextMessage($temp);
 
 	$encodeJson = json_encode($messages);
