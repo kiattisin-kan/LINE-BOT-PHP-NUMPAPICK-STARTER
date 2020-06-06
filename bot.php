@@ -19,7 +19,7 @@ if (!is_null($events['events'])) {
 	$replyToken = $events['events'][0]['replyToken'];
 	$userId = $events['events'][0]['source']['userId'];
         $temp = "User Id คือ " . $userId;
-	if(isset($events['events'][0]['source']['userId']){
+	if(isset($events['events'][0]['source']['userId'])){
           $userId = $events['events'][0]['source']['userId'];
           $temp = "User Id คือ " . $userId;
         }
