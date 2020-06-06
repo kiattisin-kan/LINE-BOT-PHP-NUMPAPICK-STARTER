@@ -17,13 +17,13 @@ if (!is_null($events['events'])) {
 	echo "line bot";
 
 	$replyToken = $events['events'][0]['replyToken'];
-	//$userId = $events['events'][0]['source']['userId'];
-        if(isset($events['events'][0]['source']['userId']){
+	$userId = $events['events'][0]['source']['userId'];
+        $temp = "User Id คือ " . $userId;
+	if(isset($events['events'][0]['source']['userId']){
           $userId = $events['events'][0]['source']['userId'];
           $temp = "User Id คือ " . $userId;
-	
         }
-        else if(isset(events['events'][0]['source']['groupId'])){
+        else if(isset($events['events'][0]['source']['groupId'])){
           $userId = $events['events'][0]['source']['groupId'];
           $temp = "Group Id คือ " . $userId;
 	}
