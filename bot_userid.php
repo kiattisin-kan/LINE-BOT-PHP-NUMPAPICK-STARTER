@@ -10,7 +10,7 @@ $request_array = json_decode($request, true);   // Decode JSON to Array
 $arrayHeader = array();
 $arrayHeader[] = "Content-Type: application/json";
 $arrayHeader[] = "Authorization: Bearer {$accessToken}";
- 
+echo "test";
 //########### Find IDUser IDGroup IDRoom From Source ###############//
 if ( sizeof($request_array['events']) > 0 ) {
     foreach ($request_array['events'] as $event) {
