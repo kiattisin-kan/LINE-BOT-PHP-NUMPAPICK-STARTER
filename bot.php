@@ -1,5 +1,4 @@
 <?php
- require("pub.php");
  require("line.php");
 
 // Get POST body content
@@ -8,34 +7,83 @@ $content = file_get_contents('php://input');
 
 $events = json_decode($content, true);
 // Validate parsed JSON data
-if (!is_null($events['ESP'])) {
+if (!is_null($events['ALARM'])) {
 	
-	send_LINE($events['ESP']);
+	send_LINE($events['ALARM']);
 		
 	echo "OK";
 	}
 if (!is_null($events['events'])) {
 	echo "line bot";
-	// Loop through each event
-	foreach ($events['events'] as $event) {
-		// Reply only when message sent is in 'text' format
-		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-			// Get text sent
-			$text = $event['message']['text'];
-			// Get replyToken
-			$replyToken = $event['replyToken'];
 
-			// Build message to reply back
+	$replyToken = $events['events'][0]['replyToken'];
+	$userId = $events['events'][0]['source']['userId'];
+	$text = $events['events'][0]['message']['text'];
 
-			$Topic = "NodeMCU1" ;
-			getMqttfromlineMsg($Topic,$text);
-			   
-			
-		}
-	}
+	$messages = [];
+	$messages['replyToken'] = $replyToken;
+    $temp = "User Id คือ " . $userId;
+	$messages['messages'][0] = getFormatTextMessage($temp);
+
+	$encodeJson = json_encode($messages);
+
+	$LINEDatas['url'] = "https://api.line.me/v2/bot/message/reply";
+ $LINEDatas['token'] = "dhreZK83Nt7uaCxqJmZkRh8aebR3Qm6hf7aNQI85YaGiFQhJYWSPy/6Mc2jS/dSFh3oMjY8wyST2ysR78fTFIQy1FxcNtEoK+5F7AXV4HSgggwE9S+sr2W7Xm1H9s7u3IhvB+GfYZkpRwVC3PZZPgAdB04t89/1O/w1cDnyilFU=";
+
+ $results = sentMessage($encodeJson,$LINEDatas);
+
+	/*Return HTTP Request 200*/
+	http_response_code(200);
 }
-$Topic = "NodeMCU1" ;
-$text = "Test";
-getMqttfromlineMsg($Topic,$text);
-echo "OK3";
+
+	function getFormatTextMessage($text)
+	{
+		$datas = [];
+		$datas['type'] = 'text';
+		$datas['text'] = $text;
+
+		return $datas;
+	}
+
+	function sentMessage($encodeJson,$datas)
+	{
+		$datasReturn = [];
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => $datas['url'],
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 30,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "POST",
+		  CURLOPT_POSTFIELDS => $encodeJson,
+		  CURLOPT_HTTPHEADER => array(
+		    "authorization: Bearer ".$datas['token'],
+		    "cache-control: no-cache",
+		    "content-type: application/json; charset=UTF-8",
+		  ),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+		    $datasReturn['result'] = 'E';
+		    $datasReturn['message'] = $err;
+		} else {
+		    if($response == "{}"){
+			$datasReturn['result'] = 'S';
+			$datasReturn['message'] = 'Success';
+		    }else{
+			$datasReturn['result'] = 'E';
+			$datasReturn['message'] = $response;
+		    }
+		}
+
+		return $datasReturn;
+	}
+
 ?>
