@@ -26,29 +26,10 @@ if ( sizeof($request_array['events']) > 0 ) {
     }
  
     $text = $event['message']['text'];
-        list($flag, $cmd, $parm1) = explode(' ', $text);
-        //###Call Function Save Log ###//
-        //saveBotLog($text, $id);
-        if($flag == "bot:"){        
-            //saveBotLog($text, $id);
-            if($cmd == "id"){
-                //$output = getFX();
                 $arrayPostData['replyToken'] = $request_array['events'][0]['replyToken'];
                 $arrayPostData['messages'][0]['type'] = "text";
                 $arrayPostData['messages'][0]['text'] = $id;
                 replyMsg($arrayHeader,$arrayPostData);
-           }
-           // ###### Not Word bot Not reply ######## //
-            if(!empty($output)){    
-                $data = [
-                'replyToken' => $reply_token,
-                'messages' => [['type' => 'text', 'text' => $output ]]
-                    ];
-                    $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-                    $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
-                        echo "Result: ".$send_result."\r\n";
-            }//Close If empty.
-        }//Close If bot.
     }//Close For.
 }//Close If.
 ?>
