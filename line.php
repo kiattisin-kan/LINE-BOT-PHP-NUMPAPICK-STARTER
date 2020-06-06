@@ -1,7 +1,7 @@
  <?php
   
 
-function send_LINE($msg){
+function send_LINE($msg,$userID){
  $access_token = 'dhreZK83Nt7uaCxqJmZkRh8aebR3Qm6hf7aNQI85YaGiFQhJYWSPy/6Mc2jS/dSFh3oMjY8wyST2ysR78fTFIQy1FxcNtEoK+5F7AXV4HSgggwE9S+sr2W7Xm1H9s7u3IhvB+GfYZkpRwVC3PZZPgAdB04t89/1O/w1cDnyilFU='; 
 
   $messages = [
@@ -14,7 +14,7 @@ function send_LINE($msg){
       $url = 'https://api.line.me/v2/bot/message/push';
       $data = [
 
-        'to' => 'U53aaa8b7e49df7f69ea5631f4d9e91e9',
+        'to' => [$userID],
         'messages' => [$messages],
       ];
       $post = json_encode($data);
