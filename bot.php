@@ -59,9 +59,10 @@ if (!is_null($events['events'])) {
 		
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') 
 		{
-			$text = $events['events'][0]['message']['text'];
+			$text = $event['message']['text'];
 			$Topic = "NamphongPP" ;
 			getMqttfromlineMsg($Topic,$text);
+			$results = sentMessage($encodeJson,$LINEDatas);
 		}
 	}
 
