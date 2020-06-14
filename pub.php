@@ -1,14 +1,10 @@
  <?php
  function pubMqtt($topic,$msg){
-    $APPID= "TestNetpieMCE"; //enter your appid
-    $KEY = "tDkQKjRY4WH85dX"; //enter your key
-    $SECRET = "jtBEHMWD9aZb8bxQjjxxV7n37"; //enter your secret
     $Topic = "$topic"; 
-      put("https://api.netpie.io/microgear/".$APPID.$Topic."?retain&auth=".$KEY.":".$SECRET,$msg);
+      put("https://api.netpie.io/v2/device/message?topic=".$Topic,$msg);
   
-  //curl -X PUT "https://api.netpie.io/v2/device/message?topic=test" -H  "Content-Type: text/plain" -d "test"
+  //curl -X PUT "https://api.netpie.io/v2/device/message?topic=test" -H  "Authorization: Device a68289b1-4a53-4a73-8275-12de7f4353dc:a2wAzJvLRFTuoKJSss6VH1PSQi1LRr5e" -H  "Content-Type: text/plain" -d "hello"
    
- 
   }
  function getMqttfromlineMsg($Topic,$lineMsg){
  
@@ -40,7 +36,7 @@
      
     curl_setopt($ch, CURLOPT_POSTFIELDS, $tmsg);
  
-    //curl_setopt($ch, CURLOPT_USERPWD, "mJ7K4MfteC7p0dW:pp4gzMhCvJIqlxc66hKEvk46m");
+    curl_setopt($ch, CURLOPT_USERPWD, "a68289b1-4a53-4a73-8275-12de7f4353dc:a2wAzJvLRFTuoKJSss6VH1PSQi1LRr5e");
      
     $response = curl_exec($ch);
     
