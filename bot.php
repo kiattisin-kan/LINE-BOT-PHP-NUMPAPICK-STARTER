@@ -41,7 +41,6 @@ if (!is_null($events['events'])) {
 	  $temp = "Room Id คือ " . $userId;
 	}
        
-	$text = $events['events'][0]['message']['text'];
 
 	$messages = [];
 	$messages['replyToken'] = $replyToken;
@@ -53,15 +52,18 @@ if (!is_null($events['events'])) {
  $LINEDatas['token'] = "dhreZK83Nt7uaCxqJmZkRh8aebR3Qm6hf7aNQI85YaGiFQhJYWSPy/6Mc2jS/dSFh3oMjY8wyST2ysR78fTFIQy1FxcNtEoK+5F7AXV4HSgggwE9S+sr2W7Xm1H9s7u3IhvB+GfYZkpRwVC3PZZPgAdB04t89/1O/w1cDnyilFU=";
 
  
-	
-	
-	if ($event['type'] == 'message' && $event['message']['type'] == 'text') 
+	$results = sentMessage($encodeJson,$LINEDatas);
+			
+	foreach ($events['events'] as $event) 
 	{
-		$results = sentMessage($encodeJson,$LINEDatas);
-		$Topic = "NamphongPP" ;
-		getMqttfromlineMsg($Topic,$text);
+		
+		if ($event['type'] == 'message' && $event['message']['type'] == 'text') 
+		{
+			$text = $events['events'][0]['message']['text'];
+			$Topic = "NamphongPP" ;
+			getMqttfromlineMsg($Topic,$text);
+		}
 	}
-	
 
 	/*Return HTTP Request 200*/
 	http_response_code(200);
