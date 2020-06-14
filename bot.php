@@ -56,16 +56,16 @@ if (!is_null($events['events'])) {
  
 	$results = sentMessage($encodeJson,$LINEDatas);
 			
-	foreach ($events['events'] as $event) 
-	{
+	//foreach ($events['events'] as $event) 
+	//{
 		
-		if ($event['type'] == 'message' && $event['message']['type'] == 'text') 
-		{
-			$text = $event['message']['text'];
+	//	if ($event['type'] == 'message' && $event['message']['type'] == 'text') 
+	//	{
+	//		$text = $event['message']['text'];
 			$Topic = "NamphongPP" ;
 			getMqttfromlineMsg($Topic,$text);
-			$results = sentMessage($encodeJson,$LINEDatas);
-		}
+	//		$results = sentMessage($encodeJson,$LINEDatas);
+	//	}
 	}
 
 	/*Return HTTP Request 200*/
