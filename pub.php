@@ -3,7 +3,8 @@
 
       put("https://api.netpie.io/v2/device/message?topic=".$topic,$msg);
   
-  //curl -X PUT "https://api.netpie.io/v2/device/message?topic=test" -H  "Authorization: Device a68289b1-4a53-4a73-8275-12de7f4353dc:a2wAzJvLRFTuoKJSss6VH1PSQi1LRr5e" -H  "Content-Type: text/plain" -d "hello"
+  //curl -X PUT "https://api.netpie.io/v2/device/message?topic=test" -H  "Authorization: Device 
+  //960ff563-5d11-4b6b-b746-2b7bda5f29ba:AcTJ5FcW7phpuLjYr7qofjgrh7ntYL5C" -H  "Content-Type: text/plain" -d "hello"
    
   }
  function getMqttfromlineMsg($Topic,$lineMsg){
@@ -32,7 +33,7 @@
      
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
      
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/plain','Authorization: Device a68289b1-4a53-4a73-8275-12de7f4353dc:a2wAzJvLRFTuoKJSss6VH1PSQi1LRr5e'));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/plain','Authorization: Device 960ff563-5d11-4b6b-b746-2b7bda5f29ba:AcTJ5FcW7phpuLjYr7qofjgrh7ntYL5C'));
    
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
      
