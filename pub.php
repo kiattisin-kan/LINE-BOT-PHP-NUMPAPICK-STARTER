@@ -1,7 +1,7 @@
  <?php
  function pubMqtt($topic,$msg){
-    $Topic = "$topic"; 
-      put("https://api.netpie.io/v2/device/message?topic=".$Topic,$msg);
+
+      put("https://api.netpie.io/v2/device/message?topic=".$topic,$msg);
   
   //curl -X PUT "https://api.netpie.io/v2/device/message?topic=test" -H  "Authorization: Device a68289b1-4a53-4a73-8275-12de7f4353dc:a2wAzJvLRFTuoKJSss6VH1PSQi1LRr5e" -H  "Content-Type: text/plain" -d "hello"
    
