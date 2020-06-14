@@ -42,7 +42,7 @@ if (!is_null($events['events'])) {
 	}
        
 	$text = $events['events'][0]['message']['text'];
-	$temp = $temp." ".$text;
+	$temp = $temp." cmd: ".$text;
 
 	$messages = [];
 	$messages['replyToken'] = $replyToken;
