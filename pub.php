@@ -5,6 +5,9 @@
     $SECRET = "jtBEHMWD9aZb8bxQjjxxV7n37"; //enter your secret
     $Topic = "$topic"; 
       put("https://api.netpie.io/microgear/".$APPID.$Topic."?retain&auth=".$KEY.":".$SECRET,$msg);
+  
+  //curl -X PUT "https://api.netpie.io/v2/device/message?topic=test" -H  "Content-Type: text/plain" -d "test"
+   
  
   }
  function getMqttfromlineMsg($Topic,$lineMsg){
