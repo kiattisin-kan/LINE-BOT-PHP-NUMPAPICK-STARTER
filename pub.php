@@ -32,12 +32,14 @@
      
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
      
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/plain','Authorization: Device a68289b1-4a53-4a73-8275-12de7f4353dc:a2wAzJvLRFTuoKJSss6VH1PSQi1LRr5e'));
+   
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
      
     curl_setopt($ch, CURLOPT_POSTFIELDS, $tmsg);
  
-    curl_setopt($ch, CURLOPT_USERPWD, "a68289b1-4a53-4a73-8275-12de7f4353dc:a2wAzJvLRFTuoKJSss6VH1PSQi1LRr5e");
-     
+    //curl_setopt($ch, CURLOPT_USERPWD, "a68289b1-4a53-4a73-8275-12de7f4353dc:a2wAzJvLRFTuoKJSss6VH1PSQi1LRr5e");     
+   
     $response = curl_exec($ch);
     
       curl_close($ch);
