@@ -8,11 +8,12 @@
 
 	$replyToken = $deCode['events'][0]['replyToken'];
 	$userId = $deCode['events'][0]['source']['userId'];
-	$text = $deCode['events'][0]['message']['text'];
+	$groupId = $deCode['events'][0]['source']['groupId'];
+        $text = $deCode['events'][0]['message']['text'];
 
 	$messages = [];
 	$messages['replyToken'] = $replyToken;
- $temp = "User Id คือ " . $userId;
+ $temp = "User Id คือ " . $userId . " group id = " . $groupId;
 	$messages['messages'][0] = getFormatTextMessage($temp);
 
 	$encodeJson = json_encode($messages);
