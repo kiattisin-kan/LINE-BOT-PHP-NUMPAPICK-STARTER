@@ -18,8 +18,11 @@
 	$encodeJson = json_encode($messages);
 
 	$LINEDatas['url'] = "https://api.line.me/v2/bot/message/reply";
- $LINEDatas['token'] = "dhreZK83Nt7uaCxqJmZkRh8aebR3Qm6hf7aNQI85YaGiFQhJYWSPy/6Mc2jS/dSFh3oMjY8wyST2ysR78fTFIQy1FxcNtEoK+5F7AXV4HSgggwE9S+sr2W7Xm1H9s7u3IhvB+GfYZkpRwVC3PZZPgAdB04t89/1O/w1cDnyilFU=";
+// $LINEDatas['token'] = "dhreZK83Nt7uaCxqJmZkRh8aebR3Qm6hf7aNQI85YaGiFQhJYWSPy/6Mc2jS/dSFh3oMjY8wyST2ysR78fTFIQy1FxcNtEoK+5F7AXV4HSgggwE9S+sr2W7Xm1H9s7u3IhvB+GfYZkpRwVC3PZZPgAdB04t89/1O/w1cDnyilFU=";
 
+$LINEDatas['token'] = "byGpBm4Uynbu2BIoib18qsj/xdispkCnW1gIn6BP/pejdrPtq/lVLE0kFPpwWGZLT9O2ZNUeqdALPakWXcsPsxCZPx6BEIv3jogJRXYY+FIl0MN65WBgCV/ZblTF5Q9mZdZ2GQPl4WRHTEFskfnGPwdB04t89/1O/w1cDnyilFU=";
+
+	
  $results = sentMessage($encodeJson,$LINEDatas);
 
 	/*Return HTTP Request 200*/
